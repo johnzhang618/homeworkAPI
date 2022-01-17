@@ -1,10 +1,12 @@
+const db = require('../../services/db');
+
 const gridState = () => {
   const result = {
     error: null,
     value: '',
   };
   // TODO: get grid state
-  const query = null;
+  const query = db.queryGridState();
 
   if (query === null) {
     result.error = 'failed';

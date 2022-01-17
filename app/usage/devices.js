@@ -1,10 +1,12 @@
+const db = require('../../services/db');
+
 const usageDevices = () => {
   const result = {
     error: null,
     value: '',
   };
   // TODO: get usage of devices
-  const query = null;
+  const query = db.queryDevicesStates();
 
   if (query === null) {
     result.error = 'failed';

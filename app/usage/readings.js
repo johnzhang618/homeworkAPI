@@ -1,3 +1,5 @@
+const db = require('../../services/db');
+
 const usageReadings = ({ start, end }) => {
   const result = {
     error: null,
@@ -20,7 +22,7 @@ const usageReadings = ({ start, end }) => {
   }
 
   // TODO: get usage readings
-  const query = null;
+  const query = db.queryReadings(startTmp, endTmp);
 
   if (query === null) {
     result.error = 'failed';
