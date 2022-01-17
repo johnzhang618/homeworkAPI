@@ -12,7 +12,7 @@
   },
   "scripts": {
     "prod": "node index.js",
-    "dev": "node index.js",
+    "dev": "node index.js dev",
     "lint": "eslint \"./**/*.js\" --quiet",
     "lintFull": "eslint \"./**/*.js\"",
     "lintFix": "eslint --fix './**/*.js'"
