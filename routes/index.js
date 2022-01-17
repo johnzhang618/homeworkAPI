@@ -1,56 +1,29 @@
 const express = require('express');
 
 const response = require('../services/response');
+const gridState = require('../app/grid/state');
+const usageDevices = require('../app/usage/devices');
+const usageReadings = require('../app/usage/readings');
 
 const router = express.Router();
 
-router.use('/', (req, res) => {
-  switch (req.method) {
-    // handle methods GET
-    case 'GET':
-      switch (req.path) {
-        // readings for charts
-        case '/readings':
-          break;
-
-        // grid states for aside overview
-        case '/grid':
-          break;
-
-        // devices details for aside overview
-        case '/devices':
-          break;
-
-        // default return 404
-        default:
-          res.send(response.notfound(req.baseUrl));
-      }
-      break;
-
-    // handle methods POST
-    case 'POST':
-      res.send(response.notfound(req.baseUrl));
-      break;
-
-    // handle methods PUT
-    case 'PUT':
-      res.send(response.notfound(req.baseUrl));
-      break;
-
-    // handle methods PATCH
-    case 'PATCH':
-      res.send(response.notfound(req.baseUrl));
-      break;
-
-    // handle methods DELETE
-    case 'DELETE':
-      res.send(response.notfound(req.baseUrl));
-      break;
-
-    // default return 404
-    default:
-      res.send(response.invalid('invalid request'));
+const formatResponse = (res, result) => {
+  if (result.error != null) {
+    res.send(response[result.error](result.value));
   }
+
+  res.send(response.success(result.value));
+};
+
+router.use('/api/v1/grid/state', (req, res) => formatResponse(res, gridState()));
+
+router.use('/api/v1/usage/devices', (req, res) => formatResponse(res, usageDevices()));
+
+router.use('/api/v1/usage/readings', (req, res) => formatResponse(res, usageReadings(req.query)));
+
+// default return 404
+router.use('/', (req, res) => {
+  res.send(response.notfound('invalid request'));
 });
 
 module.exports = router;

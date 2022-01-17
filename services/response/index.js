@@ -15,10 +15,10 @@ module.exports = {
     message: 'failed',
   }),
 
-  notfound: (error) => ({
+  notfound: (path) => ({
     code: 404,
     data: '',
-    error: `${error} not found`,
+    error: `${path} not found`,
     state: 'ERROR',
     message: 'failed',
   }),
