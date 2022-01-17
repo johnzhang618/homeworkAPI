@@ -21,7 +21,6 @@ const usageReadings = ({ start, end }) => {
     return result;
   }
 
-  // TODO: get usage readings
   const query = db.queryReadings(startTmp, endTmp);
 
   if (query === null) {

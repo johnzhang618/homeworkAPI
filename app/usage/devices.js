@@ -5,7 +5,7 @@ const usageDevices = () => {
     error: null,
     value: '',
   };
-  // TODO: get usage of devices
+
   const query = db.queryDevicesStates();
 
   if (query === null) {

@@ -5,7 +5,7 @@ const gridState = () => {
     error: null,
     value: '',
   };
-  // TODO: get grid state
+
   const query = db.queryGridState();
 
   if (query === null) {
